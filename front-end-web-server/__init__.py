@@ -51,10 +51,11 @@ def create_app(test_config=None) -> Flask:
 
     # a simple page that says hell
     @app.route("/")
-    def hello():
+    def index():
         return "Index page!"
 
     from .views import hello
+
     app.register_blueprint(hello)
 
     return app

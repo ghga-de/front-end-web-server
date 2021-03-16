@@ -28,9 +28,7 @@ def hello_world():
 
     message = b"Hello World Test"
     channel.basic_publish(
-        exchange="test",
-        routing_key=routing_key,
-        body=b"Hello World Test"
+        exchange="test", routing_key=routing_key, body=b"Hello World Test"
     )
     print(" [x] Sent %r:%r " % (routing_key, message), flush=True)
     connection.close()
