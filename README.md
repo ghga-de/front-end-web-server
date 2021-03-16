@@ -12,4 +12,7 @@ around a bunch of Python linters. Black is an opinionated auto-formatting tool f
 bring the code repository into compliance with the formatting specified in pep8 (and encorced in Flake8).
 
 You can run black and flake8 as Git pre-commit hooks locally. Make sure you have your virtual environment 
-in your .gitignore file, or that's going to be one wild ride. 
+in your .gitignore file, or running black and flake8 is going to be one wild ride. If you want to see more 
+documentation on these tools, check out:
+
+[Setting up your project with pre-commit, black, and flake8](https://dev.to/m1yag1/how-to-setup-your-project-with-pre-commit-black-and-flake8-183k)
