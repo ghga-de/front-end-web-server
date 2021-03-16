@@ -1,3 +1,6 @@
+"""
+Initialize a Flask web server to serve endpoints for the GHGA project.
+"""
 import os
 
 from flask import Flask
@@ -15,7 +18,17 @@ EVENT_MQ_VHOST = "event-host"
 EVENT_MQ_URL = f"amqp://{EVENT_MQ_USER}:{EVENT_MQ_PASSWORD}@{EVENT_MQ_BROKER}:{EVENT_MQ_PORT}//"  # {EVENT_MQ_VHOST}"
 
 
-def create_app(test_config=None):
+def create_app(test_config=None) -> Flask:
+    """
+    Create the main Flask application.
+    Parameters
+    ----------
+    :param test_config: an instance of the Python config object
+
+    Returns
+    -------
+    :return app: an instance of the Flask object
+    """
     app = Flask("front-end-web-server", instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY="dev",

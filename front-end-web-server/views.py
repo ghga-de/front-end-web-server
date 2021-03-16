@@ -1,4 +1,7 @@
-"""Routes for the front-end webserver set up using the Blueprints pattern. This Flask application uses the application
+"""
+Routes for the front-end webserver.
+
+These routes are set up using the Blueprints pattern. This Flask application uses the application
 factory pattern, which means that you cannot use the app object at import time, but you can use it within a request,
 once the application is running. To do this, use the current_app object that you can import from flask as documented
 here: https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/."""
@@ -13,7 +16,7 @@ hello = Blueprint("hello", __name__, url_prefix="/hello")
 
 @hello.route("/", methods=["GET"])
 def hello_world():
-    """Return a hello world message from our blueprint."""
+    """Request a run from the Hello World service."""
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host=current_app.config["EVENT_MQ_BROKER"])
     )
@@ -32,4 +35,4 @@ def hello_world():
     print(" [x] Sent %r:%r " % (routing_key, message), flush=True)
     connection.close()
 
-    return "Async Task executed"
+    return "Hello World task requested."
