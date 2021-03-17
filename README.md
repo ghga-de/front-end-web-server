@@ -1,4 +1,4 @@
-# GHGA Front End Web Server, a Sample Production-grade Python Repository
+# GHGA Front End Web Server, a Production-grade Python Repository
 ##Introduction
 ### Vision for GHGA
 ### Purpose of this Repository
