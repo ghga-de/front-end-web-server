@@ -1,0 +1,2 @@
+recursive-include front-end-web-server/templates *
+recursive-include front-end-web-server/static *

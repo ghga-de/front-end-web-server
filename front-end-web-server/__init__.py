@@ -6,18 +6,6 @@ import os
 from flask import Flask
 
 
-# Here are some global configuration variables. They MUST offloaded into standard Python configuration. Having them
-# here is simply convenience and to avoid adding complexity by switching to setup.cfg or equivalent.
-
-# The Message Queue (RabbitMQ) that mediates events between microservices
-EVENT_MQ_BROKER = "event-mq"
-EVENT_MQ_USER = "guest"
-EVENT_MQ_PASSWORD = "guest"
-EVENT_MQ_PORT = 5672
-EVENT_MQ_VHOST = "event-host"
-EVENT_MQ_URL = f"amqp://{EVENT_MQ_USER}:{EVENT_MQ_PASSWORD}@{EVENT_MQ_BROKER}:{EVENT_MQ_PORT}//"  # {EVENT_MQ_VHOST}"
-
-
 def create_app(test_config=None) -> Flask:
     """
     Create the main Flask application.
@@ -30,15 +18,17 @@ def create_app(test_config=None) -> Flask:
     :return app: an instance of the Flask object
     """
     app = Flask("front-end-web-server", instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev",
-        EVENT_MQ_BROKER=EVENT_MQ_BROKER
-        # DATABASE=
-    )
 
     if test_config is None:
+        # Get path to configuration file and load that configuration into Flask's app.config object.
+        curr_dir = os.path.abspath(os.path.dirname(__file__))
+        config_dir = os.path.dirname(curr_dir)
+        config_filename = os.path.join(config_dir, "config.py")
+
         # load the instance config, if it exists, when not testing
-        app.config.from_pyfile("config.py", silent=True)
+        app.config.from_pyfile(config_filename)
+
+        print(app.config.get("SECRET_KEY"))
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)

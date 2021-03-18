@@ -133,3 +133,5 @@ dmypy.json
 *docs/static
 **make.bat
 **Makefile
+
+.env
